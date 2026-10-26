@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Merge Sort — Simulator Interaktif</title>
+<meta name="description" content="Simulator interaktif algoritma Merge Sort — visualisasi divide and conquer dengan kompleksitas O(n log n)."/>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='3' y='19' width='5.5' height='11' fill='%23FFD23F' stroke='%2316161A' stroke-width='2'/%3E%3Crect x='10' y='14' width='5.5' height='16' fill='%23FF90E8' stroke='%2316161A' stroke-width='2'/%3E%3Crect x='17' y='9' width='5.5' height='21' fill='%2390E0EF' stroke='%2316161A' stroke-width='2'/%3E%3Crect x='24' y='3' width='5.5' height='27' fill='%23B4F8C8' stroke='%2316161A' stroke-width='2'/%3E%3C/svg%3E"/>
+<style>
+/*@FONT*/
+/*@CSS*/
+</style>
+</head>
+<body>
+<canvas id="bg-canvas" aria-hidden="true"></canvas>
+<div class="orb o1" aria-hidden="true"><div class="core"></div></div>
+<div class="orb o2" aria-hidden="true"><div class="core"></div></div>
+<div class="orb o3" aria-hidden="true"><div class="core"></div></div>
+<div class="dotgrid" aria-hidden="true"></div>
+
+<header class="topbar">
+  <div class="tb-left">
+    <span class="mark" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2.5" y="14" width="4.5" height="7.5" fill="#FFD23F" stroke="#16161A" stroke-width="1.6"/><rect x="8" y="10" width="4.5" height="11.5" fill="#FF90E8" stroke="#16161A" stroke-width="1.6"/><rect x="13.5" y="6" width="4.5" height="15.5" fill="#90E0EF" stroke="#16161A" stroke-width="1.6"/><rect x="19" y="2" width="4.5" height="19.5" fill="#B4F8C8" stroke="#16161A" stroke-width="1.6"/></svg>
+    </span>
+    <span class="wordmark">ALGO<i>·</i>LAB</span>
+    <span class="tb-div"></span>
+    <span class="tb-sub">MERGE SORT SIMULATOR</span>
+  </div>
+  <div class="tb-right">
+    <span class="chip-mono">O(n log n)</span>
+    <span class="tb-status"><i class="dot" id="status-dot"></i><span id="status-text">SIAP</span></span>
+  </div>
+</header>
+
+<main class="hero">
+  <section class="hero-copy">
+    <div class="badge"><i></i>SERI ALGORITMA PENGURUTAN</div>
+    <h1 id="h1"><span class="w1">Merge</span> <span class="w2">Sort</span></h1>
+    <p class="lede">Pendekatan <em>divide&nbsp;and&nbsp;conquer</em> yang memecah array secara rekursif hingga unit tunggal, lalu menggabungkan setiap sub-array menjadi urutan final — kompleksitas <strong>O(n&nbsp;log&nbsp;n)</strong> terjamin pada semua kasus.</p>
+    <div class="chips">
+      <div class="chip"><i></i><span>WAKTU</span><b>O(n log n)</b></div>
+      <div class="chip"><i></i><span>RUANG</span><b>O(n)</b></div>
+      <div class="chip"><i></i><span>STABILITAS</span><b>Stabil</b></div>
+      <div class="chip"><i></i><span>STRATEGI</span><b>Divide &amp; Conquer</b></div>
+    </div>
+    <div class="cta">
+      <button class="btn primary" id="cta-run">
+        <svg class="ic ic-play" width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.3v15.4L20.4 12z"/></svg>
+        Jalankan Simulasi
+      </button>
+      <button class="btn ghost" id="cta-rand">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 3h5v5"/><path d="M4 20 21 3"/><path d="M21 16v5h-5"/><path d="m15 15 6 6"/><path d="m4 4 5 5"/></svg>
+        Acak Dataset
+      </button>
+    </div>
+    <div class="kbd-hints">
+      <span><kbd>SPACE</kbd>Jalankan / Jeda</span>
+      <span><kbd>→</kbd>Satu Langkah</span>
+      <span><kbd>R</kbd>Acak Dataset</span>
+      <span><kbd>ESC</kbd>Atur Ulang</span>
+    </div>
+  </section>
+
+  <section class="panel" id="panel" data-phase="idle">
+    <div class="panel-head">
+      <div class="ph-tag"><i></i>KONSOL SIMULASI</div>
+      <div class="phases" id="phases">
+        <span class="ph" data-ph="divide"><i>01</i>PEMBAGIAN</span>
+        <span class="ph" data-ph="merge"><i>02</i>PENGGABUNGAN</span>
+        <span class="ph" data-ph="done"><i>03</i>TERURUT</span>
+      </div>
+    </div>
+
+    <div class="toolbar">
+      <div class="tb-buttons">
+        <button class="btn primary" id="btn-run">
+          <svg class="ic ic-play" width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.3v15.4L20.4 12z"/></svg>
+          <svg class="ic ic-pause" width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.5 4.5h4v15h-4zM13.5 4.5h4v15h-4z"/></svg>
+          <span id="btn-run-label">Jalankan</span>
+        </button>
+        <button class="btn ghost" id="btn-step">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 5.3v13.4L15.2 12z"/><rect x="16.6" y="5.3" width="2.6" height="13.4" rx="1"/></svg>
+          Langkah
+        </button>
+        <button class="btn ghost" id="btn-rand">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 3h5v5"/><path d="M4 20 21 3"/><path d="M21 16v5h-5"/><path d="m15 15 6 6"/><path d="m4 4 5 5"/></svg>
+          Acak
+        </button>
+        <button class="btn ghost" id="btn-reset">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 2.64-6.36L3 8"/><path d="M3 3v5h5"/></svg>
+          Ulang
+        </button>
+      </div>
+      <div class="tb-sep"></div>
+      <div class="tb-ctrl">
+        <label>ELEMEN</label>
+        <div class="seg" id="seg-size" role="group" aria-label="Jumlah elemen">
+          <button data-n="6">6</button>
+          <button data-n="8" class="on">8</button>
+          <button data-n="12">12</button>
+          <button data-n="16">16</button>
+        </div>
+      </div>
+      <div class="tb-ctrl grow">
+        <label>KECEPATAN</label>
+        <input type="range" id="speed" min="0.5" max="3" step="0.25" value="1.5" aria-label="Kecepatan animasi"/>
+        <span class="spd" id="spd-val">1.5×</span>
+      </div>
+    </div>
+
+    <div class="progress"><div class="fill" id="prog-fill"></div></div>
+
+    <div class="stage-viewport" id="stage-viewport">
+      <div class="stage-scale" id="stage-scale">
+        <svg id="wires" aria-hidden="true"></svg>
+        <div class="rows" id="rows"></div>
+        <div class="flight" id="flight"></div>
+      </div>
+    </div>
+
+    <div class="panel-foot">
+      <div class="stats">
+        <div class="stat"><span>PERBANDINGAN</span><b id="st-cmp">0</b></div>
+        <div class="stat"><span>PENEMPATAN</span><b id="st-wr">0</b></div>
+        <div class="stat"><span>LANGKAH</span><b id="st-step">0/0</b></div>
+        <div class="stat"><span>KEDALAMAN</span><b id="st-depth">—</b></div>
+      </div>
+      <div class="narr"><i class="caret"></i><span id="narr"></span></div>
+    </div>
+  </section>
+
+  <p class="footnote">Visualisasi menyusun pohon rekursi secara <em>level-order</em>; eksekusi Merge Sort yang sebenarnya berjalan <em>depth-first</em> — struktur operasi keduanya identik.</p>
+</main>
+
+<script>/*@GSAP*/</script>
+<script>/*@SHADER*/</script>
+<script>/*@ENGINE*/</script>
+<script>/*@ANIM*/</script>
+<script>/*@UI*/</script>
+</body>
+</html>

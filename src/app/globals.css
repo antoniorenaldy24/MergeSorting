@@ -1,0 +1,325 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --font-sans: var(--font-nunito), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-baloo), var(--font-nunito), ui-rounded, sans-serif;
+}
+
+/* ============================================
+   MERGE SORT QUEST — Playful Neo-Brutalism
+   ============================================ */
+
+@theme {
+  /* Candy palette */
+  --color-ink: #1e1b2e;
+  --color-cream: #fff8ec;
+  --color-paper: #ffffff;
+  --color-blush: #ffe9f1;
+  --color-candy-pink: #ff5d8f;
+  --color-candy-pink-soft: #ffd6e4;
+  --color-candy-yellow: #ffd23f;
+  --color-candy-yellow-soft: #fff3c4;
+  --color-candy-orange: #ff9f1c;
+  --color-candy-mint: #06d6a0;
+  --color-candy-mint-soft: #d3f8ec;
+  --color-candy-lavender: #c77dff;
+  --color-candy-lavender-soft: #f1e5ff;
+  --color-candy-red: #ff4911;
+}
+
+:root {
+  --radius: 1rem;
+  --background: #fff8ec;
+  --foreground: #1e1b2e;
+  --card: #ffffff;
+  --card-foreground: #1e1b2e;
+  --popover: #ffffff;
+  --popover-foreground: #1e1b2e;
+  --primary: #ff5d8f;
+  --primary-foreground: #ffffff;
+  --secondary: #fff3c4;
+  --secondary-foreground: #1e1b2e;
+  --muted: #f4ead9;
+  --muted-foreground: #6f6558;
+  --accent: #c77dff;
+  --accent-foreground: #ffffff;
+  --destructive: #ff4911;
+  --border: #1e1b2e;
+  --input: #1e1b2e;
+  --ring: #ff5d8f;
+  --chart-1: #ff5d8f;
+  --chart-2: #06d6a0;
+  --chart-3: #ffd23f;
+  --chart-4: #c77dff;
+  --chart-5: #ff9f1c;
+  --sidebar: #ffffff;
+  --sidebar-foreground: #1e1b2e;
+  --sidebar-primary: #ff5d8f;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #fff3c4;
+  --sidebar-accent-foreground: #1e1b2e;
+  --sidebar-border: #1e1b2e;
+  --sidebar-ring: #ff5d8f;
+}
+
+.dark {
+  --background: #1e1b2e;
+  --foreground: #fff8ec;
+  --card: #2a2540;
+  --card-foreground: #fff8ec;
+  --popover: #2a2540;
+  --popover-foreground: #fff8ec;
+  --primary: #ff5d8f;
+  --primary-foreground: #ffffff;
+  --secondary: #3a3352;
+  --secondary-foreground: #fff8ec;
+  --muted: #3a3352;
+  --muted-foreground: #b0a8c9;
+  --accent: #c77dff;
+  --accent-foreground: #ffffff;
+  --destructive: #ff4911;
+  --border: #fff8ec;
+  --input: #fff8ec;
+  --ring: #ff5d8f;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-feature-settings: "ss01";
+  }
+  ::selection {
+    background: #ff5d8f;
+    color: #ffffff;
+  }
+}
+
+/* ---------- Neo-brutalism helpers ---------- */
+
+.neo-shadow-sm {
+  box-shadow: 3px 3px 0 0 #1e1b2e;
+}
+.neo-shadow {
+  box-shadow: 5px 5px 0 0 #1e1b2e;
+}
+.neo-shadow-lg {
+  box-shadow: 8px 8px 0 0 #1e1b2e;
+}
+.neo-shadow-xl {
+  box-shadow: 12px 12px 0 0 #1e1b2e;
+}
+
+.press-effect {
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+.press-effect:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 7px 7px 0 0 #1e1b2e;
+}
+.press-effect:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 0 #1e1b2e;
+}
+
+/* ---------- Background patterns ---------- */
+
+.bg-dots {
+  background-image: radial-gradient(rgba(30, 27, 46, 0.14) 1.6px, transparent 1.6px);
+  background-size: 26px 26px;
+}
+
+.bg-dots-light {
+  background-image: radial-gradient(rgba(30, 27, 46, 0.08) 1.4px, transparent 1.4px);
+  background-size: 22px 22px;
+}
+
+.bg-dots-cream {
+  background-image: radial-gradient(rgba(255, 248, 236, 0.12) 1.6px, transparent 1.6px);
+  background-size: 26px 26px;
+}
+
+.bg-grid-paper {
+  background-image:
+    linear-gradient(rgba(30, 27, 46, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(30, 27, 46, 0.07)  1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+.bg-stripes {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    rgba(30, 27, 46, 0.08) 0,
+    rgba(30, 27, 46, 0.08) 10px,
+    transparent 10px,
+    transparent 20px
+  );
+}
+
+/* ---------- Text effects ---------- */
+
+.text-outline {
+  -webkit-text-stroke: 2.5px #1e1b2e;
+  color: transparent;
+}
+
+/* ---------- Keyframe animations ---------- */
+
+@keyframes float-bob {
+  0%, 100% { transform: translateY(0) rotate(var(--float-rot, 0deg)); }
+  50% { transform: translateY(-14px) rotate(var(--float-rot, 0deg)); }
+}
+.animate-float-bob {
+  animation: float-bob 3.2s ease-in-out infinite;
+}
+
+@keyframes wiggle {
+  0%, 100% { transform: rotate(-3deg); }
+  50% { transform: rotate(3deg); }
+}
+.animate-wiggle {
+  animation: wiggle 0.6s ease-in-out infinite;
+}
+
+@keyframes pop-in {
+  0% { transform: scale(0.3); opacity: 0; }
+  70% { transform: scale(1.15); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+.animate-pop-in {
+  animation: pop-in 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes shake-x {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-8px); }
+  40% { transform: translateX(8px); }
+  60% { transform: translateX(-6px); }
+  80% { transform: translateX(6px); }
+}
+.animate-shake-x {
+  animation: shake-x 0.4s ease-in-out;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 93, 143, 0.55); }
+  50% { box-shadow: 0 0 0 10px rgba(255, 93, 143, 0); }
+}
+.animate-pulse-glow {
+  animation: pulse-glow 1.4s ease-out infinite;
+}
+
+@keyframes stripe-slide {
+  from { background-position: 0 0; }
+  to { background-position: 56px 0; }
+}
+.animate-stripe-slide {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    rgba(255, 255, 255, 0.35) 0,
+    rgba(255, 255, 255, 0.35) 14px,
+    transparent 14px,
+    transparent 28px
+  );
+  background-size: 56px 100%;
+  animation: stripe-slide 1s linear infinite;
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.animate-spin-slow {
+  animation: spin-slow 14s linear infinite;
+}
+
+@keyframes bounce-soft {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+.animate-bounce-soft {
+  animation: bounce-soft 1.6s ease-in-out infinite;
+}
+
+/* ---------- Cute scrollbar ---------- */
+
+.scroll-cute::-webkit-scrollbar {
+  height: 10px;
+  width: 10px;
+}
+.scroll-cute::-webkit-scrollbar-track {
+  background: #f4ead9;
+  border-radius: 999px;
+  border: 2px solid #1e1b2e;
+}
+.scroll-cute::-webkit-scrollbar-thumb {
+  background: #ff5d8f;
+  border-radius: 999px;
+  border: 2px solid #1e1b2e;
+}
+.scroll-cute {
+  scrollbar-width: auto;
+  scrollbar-color: #ff5d8f #f4ead9;
+}
+
+/* ---------- Card game helpers ---------- */
+
+.card-3d {
+  transform-style: preserve-3d;
+  perspective: 600px;
+}
+
+.hover-lift {
+  transition: transform 0.15s ease;
+}
+.hover-lift:hover {
+  transform: translateY(-4px);
+}
+
+/* Number cell transitions */
+.cell-place {
+  animation: pop-in 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
